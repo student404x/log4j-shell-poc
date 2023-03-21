@@ -52,7 +52,7 @@ pipeline {
             steps {
                  sh 'sed -i "s/<TAG>/${IMAGE_TAG}-${BUILD_NUMBER}/" deployment.yml'
                  sh 'kubectl apply -f deployment.yml'
-                 /*
+                 
 
             }
         } 
