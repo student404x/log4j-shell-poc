@@ -35,7 +35,7 @@ pipeline {
     stage('Pushing to OCIR') {
      steps{  
          script {
-                sh """docker login -u '${REGISTRY_USERNAME}' -p '${REG_AUTH_TOKEN}' gru.ocir.io"""
+                sh 'docker login -u ${REGISTRY_USERNAME} -p ${REG_AUTH_TOKEN} gru.ocir.io'
                 sh """docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG}-${env.BUILD_NUMBER} ${REPOSITORY_URI}:$IMAGE_TAG-${env.BUILD_NUMBER}"""
                 sh """docker push ${REPOSITORY_URI}:${IMAGE_TAG}-${env.BUILD_NUMBER}"""
          }
