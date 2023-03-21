@@ -16,27 +16,22 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: log4shell-demo
-        image: public.ecr.aws/f9n2h3p5/log4shellpub:<TAG>
+        image: gru.ocir.io/fortinetoraclecloud1/log4shell-fgallego:<TAG>
         imagePullPolicy: "Always"
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: ocirsecret
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: log4shell-demo
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: external
-    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
-    service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: deregistration_delay.timeout_seconds=15
-    
-
 spec:
-  ports:
-    - port: 8080
-      targetPort: 8080
-      protocol: TCP
   type: LoadBalancer
   selector:
     app: log4shell-demo
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
