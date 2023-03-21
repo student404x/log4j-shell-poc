@@ -18,6 +18,8 @@ spec:
       - name: log4shell-demo
         image: gru.ocir.io/fortinetoraclecloud1/log4shell-fgallego:<TAG>
         imagePullPolicy: "Always"
+        securityContext: 
+          allowPrivilegeEscalation: false
         ports:
         - containerPort: 8080
       imagePullSecrets:
