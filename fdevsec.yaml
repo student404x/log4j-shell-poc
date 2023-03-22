@@ -1,0 +1,20 @@
+version: v1
+
+id:
+  org: 60128e83-07b2-447a-be47-7e3405a278ad
+  app: 9f5717e5-de71-42d9-9bc0-adebdaeeb8ee
+
+scanners:
+  - sast
+#  - dast
+  - secret
+  - sca
+  - iac
+  - container   
+    
+#dast:
+3  url: http://a4abd7829a8c8430ba988df760b1b0e4-1111857908.us-east-1.elb.amazonaws.com:8081
+#  full_scan: true #true|false
+
+fail_pipeline:
+  risk_rating: 9
