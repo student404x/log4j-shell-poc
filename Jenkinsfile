@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         IMAGE_REPO_NAME="log4shell-fgallego"
-        //REPLACE XXX WITH YOUR STUDENT NUMBER
         IMAGE_TAG= "tdc1"
         REPOSITORY_URI = "gru.ocir.io/fortinetoraclecloud1/log4shell-fgallego"
         REGISTRY_USERNAME = "fortinetoraclecloud1/fgallego"
@@ -41,13 +40,13 @@ pipeline {
          }
         }
       }
-      /*stage('SAST'){
+      stage('SAST'){
             steps {
                  sh 'env | grep -E "JENKINS_HOME|BUILD_ID|GIT_BRANCH|GIT_COMMIT" > /tmp/env'
                  sh 'docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest'
                  sh 'docker run --rm --env-file /tmp/env --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest'
             }
-        }*/
+        }
       stage('Deploy'){
             steps {
                  sh 'sed -i "s/<TAG>/${IMAGE_TAG}-${BUILD_NUMBER}/" deployment.yml'
